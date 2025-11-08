@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yassir Yagout - Cybersecurity Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000814;
+            color: #979dac;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(0, 53, 102, 0.95);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(151, 157, 172, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #979dac;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #000814 0%, #003566 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(151, 157, 172, 0.03) 2px,
+                rgba(151, 157, 172, 0.03) 4px
+            );
+            animation: scan 8s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(151, 157, 172, 0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            color: #979dac;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero .cta {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #003566;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid #003566;
+            animation: fadeInUp 1s ease-out 0.6s both;
+            margin: 0 0.5rem;
+        }
+
+        .hero .cta:hover {
+            background: transparent;
+            border-color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 53, 102, 0.5);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section:nth-child(even) {
+            background: rgba(0, 53, 102, 0.1);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #003566;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+        }
+
+        .certifications {
+            background: rgba(0, 53, 102, 0.3);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(151, 157, 172, 0.2);
+        }
+
+        .certifications h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .cert-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(151, 157, 172, 0.2);
+        }
+
+        .cert-item:last-child {
+            border-bottom: none;
+        }
+
+        .cert-title {
+            color: white;
+            font-weight: 500;
+        }
+
+        .cert-org {
+            font-size: 0.9rem;
+            color: #979dac;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: rgba(0, 53, 102, 0.3);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(151, 157, 172, 0.2);
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: #003566;
+            box-shadow: 0 10px 30px rgba(0, 53, 102, 0.3);
+        }
+
+        .skill-card h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-card ul {
+            list-style: none;
+        }
+
+        .skill-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .skill-card li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #003566;
+            font-weight: bold;
+        }
+
+        /* Projects */
+        .project-card {
+            background: rgba(0, 53, 102, 0.2);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(151, 157, 172, 0.2);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: #003566;
+            box-shadow: 0 10px 30px rgba(0, 53, 102, 0.3);
+        }
+
+        .project-card h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-meta {
+            color: #979dac;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: #003566;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 53, 102, 0.3);
+            border-radius: 8px;
+            border: 1px solid rgba(151, 157, 172, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: #979dac;
+            margin-top: 0.5rem;
+        }
+
+        /* Contact */
+        .contact-info {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            background: #003566;
+            border-radius: 4px;
+            transition: all 0.3s;
+            border: 2px solid #003566;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-links a:hover {
+            background: transparent;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #003566;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>YASSIR YAGOUT</h1>
+            <p class="tagline">Junior SOC Analyst | Threat Intelligence | Incident Response Specialist | Penster</p>
+            <div>
+                <a href="#contact" class="cta">Get In Touch</a>
+                <a href="mailto:yagoutyassir@gmail.com" class="cta">Email Me</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p style="margin-bottom: 1rem;">
+                    Master's student in <strong style="color: white;">Intelligent Cybersecurity & Emerging Technologies</strong> at Mohammed V University, Rabat. Specialized in threat intelligence and SOC operations with hands-on experience completing over 50 CTF challenges and labs in less than two months.
+                </p>
+                <p style="margin-bottom: 1rem;">
+                    My expertise spans threat hunting, network analysis, incident response, and security engineering. Currently deepening my knowledge in AI/LLM security, including prompt injection, OWASP LLM Top 10, and the Garak framework.
+                </p>
+                <p>
+                    Strong technical communicator with the ability to present security findings to diverse audiences. Passionate about staying ahead of emerging threats and contributing to the cybersecurity community through CTF competitions and technical blogging on Medium.
+                </p>
+            </div>
+            <div class="certifications">
+                <h3>Certifications</h3>
+                <div class="cert-item">
+                    <div class="cert-title">ISC² Certified in Cybersecurity (CC)</div>
+                    <div class="cert-org">ISC² • 2025</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-title">SOC Analyst Level 1</div>
+                    <div class="cert-org">CyberDefenders • 2025</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-title">Google Cybersecurity Certificate</div>
+                    <div class="cert-org">Coursera • 2025</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-title">Junior Analyst (In Progress)</div>
+                    <div class="cert-org">SecurityBlue • 2025</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>SOC & Detection</h3>
+                <ul>
+                    <li>ELK Stack</li>
+                    <li>Microsoft Sentinel</li>
+                    <li>Wireshark</li>
+                    <li>SOAR Playbooks</li>
+                    <li>Wazuh (in progress)</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Forensics & Threat Intel</h3>
+                <ul>
+                    <li>Volatility & Rekall</li>
+                    <li>OSINT & VirusTotal</li>
+                    <li>ALEAPP</li>
+                    <li>MITRE ATT&CK</li>
+                    <li>Cyber Threat Intelligence</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Pentest & AppSec</h3>
+                <ul>
+                    <li>Metasploit & Burp Suite</li>
+                    <li>Nmap</li>
+                    <li>Atomic Red Team</li>
+                    <li>Active Directory Attacks</li>
+                    <li>OWASP Top 10</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Risk & Compliance</h3>
+                <ul>
+                    <li>ISO 27001</li>
+                    <li>NIST CSF</li>
+                    <li>EBIOS RM</li>
+                    <li>Qualys</li>
+                    <li>IAM</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Programming & Systems</h3>
+                <ul>
+                    <li>Python & Bash</li>
+                    <li>JavaScript & C/C++</li>
+                    <li>Linux (Kali, Ubuntu, Parrot)</li>
+                    <li>Windows Systems</li>
+                    <li>Docker & Ansible</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>AI/LLM Security</h3>
+                <ul>
+                    <li>Prompt Injection</li>
+                    <li>OWASP LLM Top 10</li>
+                    <li>Garak Framework</li>
+                    <li>ML-based NIDS/HIDS</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        
+        <div class="project-card">
+            <h3>SOC Engineering with ELK Stack</h3>
+            <p class="project-meta">Personal Project • 2025</p>
+            <p>Designed and implemented a complete SOC laboratory using Lynis, ELK Stack, Docker, and Ansible. Built log collection pipeline, configured alert rules, and automated investigation workflows for real-time threat detection.</p>
+            <div class="project-tags">
+                <span class="tag">ELK Stack</span>
+                <span class="tag">Docker</span>
+                <span class="tag">Ansible</span>
+                <span class="tag">SIEM</span>
+                <span class="tag">Automation</span>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h3>ML-Based Network Intrusion Detection System</h3>
+            <p class="project-meta">Academic Project • 2025</p>
+            <p>Developed network and host-based intrusion detection systems using machine learning models to classify and detect anomalies. Implemented various algorithms for traffic analysis and threat identification.</p>
+            <div class="project-tags">
+                <span class="tag">Machine Learning</span>
+                <span class="tag">Python</span>
+                <span class="tag">NIDS</span>
+                <span class="tag">Anomaly Detection</span>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h3>Host Intrusion Detection with osquery</h3>
+            <p class="project-meta">Academic Project • 2025</p>
+            <p>Designed and deployed a host-based intrusion detection system using osquery to monitor system activities, detect anomalies, and generate security alerts for endpoint protection.</p>
+            <div class="project-tags">
+                <span class="tag">osquery</span>
+                <span class="tag">HIDS</span>
+                <span class="tag">Endpoint Security</span>
+                <span class="tag">Monitoring</span>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h3>Network Traffic Analyzer & Statistics Tool</h3>
+            <p class="project-meta">Academic Project • 2025</p>
+            <p>Built a comprehensive network traffic analyzer for capturing and classifying Ethernet/IP/TCP packets. Implemented IP/port statistics calculation and protocol usage analysis using Java and Pcap4J.</p>
+            <div class="project-tags">
+                <span class="tag">Java</span>
+                <span class="tag">Pcap4J</span>
+                <span class="tag">Network Analysis</span>
+                <span class="tag">Packet Analysis</span>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h3>Secure Web Development - DM Restaurant Platform</h3>
+            <p class="project-meta">Academic Project • 2024</p>
+            <p>Developed a full-stack food ordering platform with JWT authentication, role-based access control, data encryption, and secure payment processing (Stripe integration) using the MERN stack.</p>
+            <div class="project-tags">
+                <span class="tag">MERN Stack</span>
+                <span class="tag">JWT</span>
+                <span class="tag">Encryption</span>
+                <span class="tag">Secure Payments</span>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h3>Network Attack Laboratory</h3>
+            <p class="project-meta">Personal Project • 2023</p>
+            <p>Hands-on penetration testing lab covering WPA handshake capture, PSK cracking, host enumeration, MITM attacks via ARP spoofing, and comprehensive traffic analysis.</p>
+            <div class="project-tags">
+                <span class="tag">Penetration Testing</span>
+                <span class="tag">MITM</span>
+                <span class="tag">ARP Spoofing</span>
+                <span class="tag">WiFi Security</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements">
+        <h2>Achievements & Stats</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">CTF Challenges Completed (2 months)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Active Certifications</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Major Projects</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+        </div>
+        <div style="margin-top: 3rem; text-align: center;">
+            <h3 style="color: white; margin-bottom: 1.5rem; font-size: 1.5rem;">Interests & Community</h3>
+            <div class="project-tags" style="justify-content: center;">
+                <span class="tag">CTFTime Competitor</span>
+                <span class="tag">picoCTF</span>
+                <span class="tag">HackTheBox</span>
+                <span class="tag">Medium Blogger</span>
+                <span class="tag">Graphic Design</span>
+                <span class="tag">Enactus Member</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-info">
+            <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+                Based in Rabat, Morocco. Available for cybersecurity opportunities and collaborations.
+            </p>
+            <p style="margin-bottom: 2rem;">
+                myemail@gmail.com | +212 6 06 06 06 06
+            </p>
+            <div class="contact-links">
+                <a href="mailto:myemail@gmail.com">
+                    <span></span> Email
+                </a>
+                <a href="https://linkedin.com/in/yassir-yagout" target="_blank">
+                    <span></span> LinkedIn
+                </a>
+                <a href="https://github.com/yassiryagoat" target="_blank">
+                    <span></span> GitHub
+                </a>
+                <a href="https://medium.com/@y" target="_blank">
+                    <span></span> Medium
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Yassir Yagout. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Master's Student in Intelligent Cybersecurity & Emerging Technologies</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add active state to nav on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.style.background = '';
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.style.background = 'rgba(255, 255, 255, 0.1)';
+                }
+            });
+        });
+
+        // Add entrance animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .skill-card, .stat-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

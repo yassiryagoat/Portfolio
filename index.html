@@ -126,19 +126,21 @@
         }
 
         .logo-text {
-            display: inline-block;
-            margin-left: 0.4rem;
-            transition: transform 0.35s cubic-bezier(0.2,0.9,0.2,1), opacity 0.35s ease;
-            z-index: 1; /* behind the image */
-            white-space: nowrap;
-        }
+    display: inline-block;
+    margin-left: 0.4rem;
+    transform: translateX(-60px); /* start shifted left */
+    opacity: 0; /* start hidden */
+    transition: transform 0.35s cubic-bezier(0.2,0.9,0.2,1), opacity 0.35s ease;
+    z-index: 1;
+    white-space: nowrap;
+}
 
-        /* when moved, slide left and fade out so it disappears under the avatar image */
-        .logo-text.moved {
-            transform: translateX(-60px);
-            opacity: 0;
-            pointer-events: none;
-        }
+/* When moved, slide to original position and fade in */
+.logo-text.moved {
+    transform: translateX(0); /* back to normal position */
+    opacity: 1; /* fully visible */
+    pointer-events: auto;
+}
 
         .logo::before {
             
@@ -333,28 +335,53 @@
 
         .skills-badges {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
+            flex-wrap: nowrap; /* keep badges on a single line */
+            gap: 0.5rem; /* slightly tighter spacing */
             justify-content: center;
-            margin: 1.5rem 0;
+            margin: 1.25rem 0; /* small vertical reduction */
+            overflow-x: auto; /* allow horizontal scroll if they overflow */
+            overflow-y: hidden; /* prevent vertical scrollbar when badges grow or cast shadow */
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 0; /* no extra padding so no visible bar area */
+            scrollbar-width: none; /* Firefox: hide scrollbar */
+            -ms-overflow-style: none; /* IE 10+: hide scrollbar */
+        }
+
+        /* Hide scrollbar UI on WebKit while preserving scrollability */
+        .skills-badges::-webkit-scrollbar {
+            height: 0; /* effectively hide horizontal scrollbar */
+        }
+        .skills-badges::-webkit-scrollbar-thumb {
+            background: transparent;
+        }
+        .skills-badges::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        /* On very small screens allow wrapping to avoid excessive horizontal scroll */
+        @media (max-width: 480px) {
+            .skills-badges {
+                flex-wrap: wrap;
+                overflow-x: visible;
+            }
         }
 
         .hero-badge {
             display: inline-block;
-            padding: 0.6rem 1.2rem;
+            padding: 0.45rem 0.9rem; /* reduced padding for a more compact look */
             background: rgba(25, 88, 155, 0.3);
             border: 1px solid var(--primary);
-            border-radius: 20px;
+            border-radius: 12px; /* slightly smaller radius */
             color: var(--white);
-            font-size: 0.95rem;
+            font-size: 0.85rem; /* reduced font-size */
             font-weight: 500;
-            letter-spacing: 0.5px;
-            backdrop-filter: blur(10px);
+            letter-spacing: 0.4px;
+            backdrop-filter: blur(8px);
             transition: var(--transition);
             opacity: 0;
-            transform: translateY(20px);
-            animation: badgeAppear 0.5s ease-out forwards;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transform: translateY(12px);
+            animation: badgeAppear 0.45s ease-out forwards;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
         }
 
         .hero-badge:nth-child(1) { animation-delay: 0.1s; }
@@ -390,10 +417,10 @@
         }
 
         .hero-badge:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px) scale(1.03); /* softer scale */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
             animation: badgePulse 1.5s ease-in-out infinite;
-            filter: brightness(1.1);
+            filter: brightness(1.06);
         }
 
         @keyframes badgePulse {
@@ -794,6 +821,18 @@
             margin-bottom: 0.5rem;
             position: relative;
             z-index: 1;
+        }
+
+        /* Keep project heading links white and match heading styles */
+        .project-card h3 a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .project-card h3 a:hover {
+            color: var(--white);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
         }
 
         .project-meta {
@@ -1514,7 +1553,7 @@
         <div class="nav-container">
             <a href="#home" class="logo">
                 <img src="./images/vishnu.jpeg" alt="Logo" class="social-icon">
-                <span class="logo-text">yagout yassir-v15nu</span>
+                <span class="logo-text">yagout yassir/ v15nu</span>
             </a>
             <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
             <ul id="navMenu">
@@ -1682,11 +1721,10 @@
                 
                 <div class="project-card">
                     <div class="project-content">
-                        <h3>SOC Engineering with ELK Stack</h3>
+                        <h3><a href="https://github.com/yassiryagoat/Security-Operations-Center--SOC--Architecture" target="_blank" rel="noopener noreferrer">SOC Engineering with ELK Stack</a></h3>
                         <p class="project-meta">
                             <span class="date">
-                                <span class="date-icon"><img src="./images/icons8-date-50.png" alt="Medium" class="social-icon">
-</span>
+                                <span class="date-icon"><img src="./images/icons8-date-50.png" alt="Medium" class="social-icon"></span>
                                 <span>Nov 2025</span>
                             </span>
                             <span class="date">
@@ -1709,7 +1747,7 @@
 
                 <div class="project-card">
                     <div class="project-content">
-                        <h3>ML-Based Network Intrusion Detection System</h3>
+                        <h3><a href="https://github.com/yassiryagoat/NIDS-based-on-ML" target="_blank" rel="noopener noreferrer">ML-Based Network Intrusion Detection System</a></h3>
                         <p class="project-meta">
                             <span class="date">
                                 <span class="date-icon"><img src="./images/icons8-date-50.png" alt="Medium" class="social-icon">
@@ -1719,7 +1757,7 @@
                             <span class="date">
                                 <span class="date-icon"><img src="./images/icons8-project-48.png" alt="Medium" class="social-icon">
 </span>
-                                Personal Project
+                                Academic Project
                             </span>
                         </p>
                         <p>Developed network and host-based intrusion detection systems using machine learning models to classify and detect anomalies. Implemented various algorithms for traffic analysis and threat identification with high accuracy rates.</p>
@@ -1735,7 +1773,7 @@
 
                 <div class="project-card">
                     <div class="project-content">
-                        <h3>Host Intrusion Detection with osquery</h3>
+                        <h3><a href="https://github.com/yassiryagoat/HIDS-Implementation-with-Osquery-" target="_blank" rel="noopener noreferrer">Host Intrusion Detection with osquery</a></h3>
                         <p class="project-meta">
                             <span class="date">
                                 <span class="date-icon"><img src="./images/icons8-date-50.png" alt="Medium" class="social-icon">
@@ -1745,7 +1783,7 @@
                             <span class="date">
                                 <span class="date-icon"><img src="./images/icons8-project-48.png" alt="Medium" class="social-icon">
 </span>
-                                Personal Project
+                                Academic Project
                             </span>
                         </p>
                         <p>Designed and deployed a host-based intrusion detection system using osquery to monitor system activities, detect anomalies, and generate security alerts for comprehensive endpoint protection.</p>
@@ -1761,7 +1799,7 @@
 
                 <div class="project-card">
                     <div class="project-content">
-                        <h3>Network Traffic Analyzer & Statistics Tool</h3>
+                        <h3><a href="https://github.com/yassiryagoat/NetworkAnalyzer">Network Traffic Analyzer & Statistics Tool</a></h3>
                         <p class="project-meta">
                             <span class="date">
                                 <span class="date-icon"><img src="./images/icons8-date-50.png" alt="Medium" class="social-icon">
@@ -1771,7 +1809,7 @@
                             <span class="date">
                                 <span class="date-icon"><img src="./images/icons8-project-48.png" alt="Medium" class="social-icon">
 </span>
-                                Personal Project
+                                Academic Project
                             </span>
                         </p>
                         <p>Built a comprehensive network traffic analyzer for capturing and classifying Ethernet/IP/TCP packets. Implemented IP/port statistics calculation and protocol usage analysis using Java and Pcap4J.</p>
@@ -1787,7 +1825,7 @@
 
                 <div class="project-card">
                     <div class="project-content">
-                        <h3>Secure Web Development - DM Restaurant Platform</h3>
+                        <h3><a href="https://github.com/yassiryagoat/DM-a-secure-web-app-for-food-oredering">Secure Web Development - DM Restaurant Platform</a></h3>
                         <p class="project-meta">
                             <span class="date">
                                 <span class="date-icon"><img src="./images/icons8-date-50.png" alt="Medium" class="social-icon">
@@ -1797,7 +1835,7 @@
                             <span class="date">
                                 <span class="date-icon"><img src="./images/icons8-project-48.png" alt="Medium" class="social-icon">
 </span>
-                                Personal Project
+                                Academic Project
                             </span>
                         </p>
                         <p>Developed a full-stack food ordering platform with JWT authentication, role-based access control, data validation, and secure payment integration using Node.js, Express, and MongoDB.</p>
@@ -1843,11 +1881,9 @@
     </section>
 
     <footer>
-        <p>© 2025 Yassir YAGOUT| Cybersecurity Professional</p>
-        <p>Built with  and secured with best practices</p>
+        <p>© 2025 Yassir Yagout | Cybersecurity Folk</p>
+        <p>Crafted with care and secured following industry best practices</p>
     </footer>
-
-    <a href="#home" class="scroll-top" id="scrollTop">⬆️</a>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

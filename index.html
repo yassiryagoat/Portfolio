@@ -111,6 +111,8 @@
             align-items: center;
             gap: 0.5rem;
             transition: var(--transition);
+            position: relative;
+            overflow: visible;
         }
 
         .logo img.social-icon {
@@ -119,6 +121,23 @@
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid var(--primary);
+            position: relative;
+            z-index: 3; /* keep image above the text when it moves */
+        }
+
+        .logo-text {
+            display: inline-block;
+            margin-left: 0.4rem;
+            transition: transform 0.35s cubic-bezier(0.2,0.9,0.2,1), opacity 0.35s ease;
+            z-index: 1; /* behind the image */
+            white-space: nowrap;
+        }
+
+        /* when moved, slide left and fade out so it disappears under the avatar image */
+        .logo-text.moved {
+            transform: translateX(-60px);
+            opacity: 0;
+            pointer-events: none;
         }
 
         .logo::before {
@@ -157,6 +176,11 @@
             background: var(--primary);
             transition: var(--transition);
             transform: translateX(-50%);
+        }
+
+        /* don't show the nav underline for the logo anchor */
+        .logo::after {
+            display: none;
         }
 
         nav a:hover::after {
@@ -1488,7 +1512,10 @@
     
     <nav id="navbar">
         <div class="nav-container">
-            <a href="#home" class="logo"><img src="./images/vishnu.jpeg" alt="Logo" class="social-icon">yagout yassir / v15nu</a>
+            <a href="#home" class="logo">
+                <img src="./images/vishnu.jpeg" alt="Logo" class="social-icon">
+                <span class="logo-text">yagout yassir-v15nu</span>
+            </a>
             <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
             <ul id="navMenu">
                 <li><a href="#home" class="nav-link active">Home</a></li>
@@ -1687,7 +1714,7 @@
                             <span class="date">
                                 <span class="date-icon"><img src="./images/icons8-date-50.png" alt="Medium" class="social-icon">
 </span>
-                                <span>Sep 2025</span>
+                                <span>Jul 2025</span>
                             </span>
                             <span class="date">
                                 <span class="date-icon"><img src="./images/icons8-project-48.png" alt="Medium" class="social-icon">
@@ -1713,7 +1740,7 @@
                             <span class="date">
                                 <span class="date-icon"><img src="./images/icons8-date-50.png" alt="Medium" class="social-icon">
 </span>
-                                <span>Jul 2025</span>
+                                <span>May 2025</span>
                             </span>
                             <span class="date">
                                 <span class="date-icon"><img src="./images/icons8-project-48.png" alt="Medium" class="social-icon">
@@ -1739,7 +1766,7 @@
                             <span class="date">
                                 <span class="date-icon"><img src="./images/icons8-date-50.png" alt="Medium" class="social-icon">
 </span>
-                                <span>May 2025</span>
+                                <span>Mars 2025</span>
                             </span>
                             <span class="date">
                                 <span class="date-icon"><img src="./images/icons8-project-48.png" alt="Medium" class="social-icon">
@@ -1765,7 +1792,7 @@
                             <span class="date">
                                 <span class="date-icon"><img src="./images/icons8-date-50.png" alt="Medium" class="social-icon">
 </span>
-                                <span>Dec 2024</span>
+                                <span>Jul 2024</span>
                             </span>
                             <span class="date">
                                 <span class="date-icon"><img src="./images/icons8-project-48.png" alt="Medium" class="social-icon">
@@ -1845,6 +1872,16 @@
                         link.classList.add('active');
                     }
                 });
+
+                // Move logo text behind image when not on home
+                const logoText = document.querySelector('.logo-text');
+                if (logoText) {
+                    if (currentSection !== 'home') {
+                        logoText.classList.add('moved');
+                    } else {
+                        logoText.classList.remove('moved');
+                    }
+                }
             }
 
             // Update active section on scroll

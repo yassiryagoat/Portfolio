@@ -113,8 +113,16 @@
             transition: var(--transition);
         }
 
+        .logo img.social-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+        }
+
         .logo::before {
-            content: '⚡';
+            
             color: var(--primary);
         }
 
@@ -234,12 +242,13 @@
         .hero {
             min-height: 100vh;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             text-align: center;
             position: relative;
             overflow: hidden;
             background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary-dark) 50%, var(--primary) 100%);
+            padding-top: 8rem;
         }
 
         .hero::before {
@@ -265,13 +274,15 @@
         .hero-content {
             position: relative;
             z-index: 1;
-            padding: 2rem;
+            padding: 0 2rem;
+            padding-top: 4rem;
             max-width: 1000px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 2rem;
             flex-wrap: wrap;
+            margin-top: -4rem;
         }
 
         .hero-text {
@@ -302,26 +313,75 @@
             gap: 0.75rem;
             justify-content: center;
             margin: 1.5rem 0;
-            animation: fadeInUp 1s ease-out 0.3s both;
         }
 
         .hero-badge {
             display: inline-block;
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem;
             background: rgba(25, 88, 155, 0.3);
             border: 1px solid var(--primary);
             border-radius: 20px;
             color: var(--white);
-            font-size: 0.9rem;
-            animation: fadeInUp 1s ease-out;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
             backdrop-filter: blur(10px);
             transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: badgeAppear 0.5s ease-out forwards;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-badge:nth-child(1) { animation-delay: 0.1s; }
+        .hero-badge:nth-child(2) { animation-delay: 0.2s; }
+        .hero-badge:nth-child(3) { animation-delay: 0.3s; }
+        .hero-badge:nth-child(4) { animation-delay: 0.4s; }
+        .hero-badge:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes badgeAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .badge-soc {
+            background: #2364aa;
+            border-color: #2364aa;
+        }
+
+        .badge-ai {
+            background: #736ced;
+            border-color: #736ced;
+        }
+
+        .badge-pentest {
+            background: #d62839;
+            border-color: #d62839;
         }
 
         .hero-badge:hover {
-            transform: translateY(-2px);
-            background: rgba(25, 88, 155, 0.4);
-            box-shadow: 0 4px 12px rgba(25, 88, 155, 0.3);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            animation: badgePulse 1.5s ease-in-out infinite;
+            filter: brightness(1.1);
+        }
+
+        @keyframes badgePulse {
+            0% {
+                box-shadow: 0 4px 15px rgba(25, 88, 155, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 25px rgba(25, 88, 155, 0.6);
+            }
+            100% {
+                box-shadow: 0 4px 15px rgba(25, 88, 155, 0.4);
+            }
         }
 
         .hero h1 {
@@ -348,6 +408,7 @@
             justify-content: center;
             flex-wrap: wrap;
             animation: fadeInUp 1s ease-out 0.6s both;
+            margin-top: 3.5rem;
         }
 
         .cta {
@@ -996,16 +1057,7 @@
             margin-right: auto;
         }
 
-        .contact-details {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 16px;
-            margin-bottom: 2rem;
-            border: 1px solid var(--border);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
+        
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1066,7 +1118,7 @@
         .contact-form form {
             background: var(--bg-card);
             padding: 2.5rem;
-            border-radius: 16px;
+            border-radius: 0;
             border: 1px solid var(--border);
             box-shadow: 0 10px 40px rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
@@ -1076,7 +1128,7 @@
         .contact-form textarea {
             width: 100%;
             padding: 1rem;
-            background: rgba(25, 88, 155, 0.1);
+            background: rgba(155, 142, 25, 0.1);
             border: 1px solid var(--border);
             border-radius: 8px;
             color: var(--text-light);
@@ -1173,7 +1225,7 @@
         .contact-form {
             background: var(--bg-card);
             padding: 2.5rem;
-            border-radius: 16px;
+            border-radius: 0;
             margin-top: 2rem;
             border: 1px solid var(--border);
             backdrop-filter: blur(10px);
@@ -1298,6 +1350,42 @@
             transition: width 0.2s ease;
         }
 
+        /* Navigation Links */
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-link.active {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+
         /* Responsive */
         @media (max-width: 968px) {
             .hero h1 {
@@ -1400,7 +1488,7 @@
     
     <nav id="navbar">
         <div class="nav-container">
-            <a href="#home" class="logo">Yassir YAGOUT</a>
+            <a href="#home" class="logo"><img src="./images/vishnu.jpeg" alt="Logo" class="social-icon">yagout yassir / v15nu</a>
             <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
             <ul id="navMenu">
                 <li><a href="#home" class="nav-link active">Home</a></li>
@@ -1419,11 +1507,11 @@
                     <h1>YAGOUT YASSIR</h1>
                     <p class="tagline">Cybersecurity Junior</p>
                     <div class="skills-badges">
-                        <span class="hero-badge">SOC Analyst</span>
-                        <span class="hero-badge">Threat Intelligence</span>
-                        <span class="hero-badge">Incident Response</span>
-                        <span class="hero-badge">AI/LLM Security Researcher</span>
-                        <span class="hero-badge">Penetration Tester</span>
+                        <span class="hero-badge badge-soc">SOC Analyst</span>
+                        <span class="hero-badge badge-soc">Threat Intelligence</span>
+                        <span class="hero-badge badge-soc">Incident Response</span>
+                        <span class="hero-badge badge-ai">AI/LLM Security Researcher</span>
+                        <span class="hero-badge badge-pentest">Penetration Tester</span>
                     </div>
                     <div class="cta-group">
                         <a href="#contact" class="cta">
@@ -1710,16 +1798,16 @@
                 
                 <div class="contact-details">
                     <div class="social-links">
-                        <a href="https://linkedin.com/yassir-yagout" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <a href="https://www.linkedin.com/in/yassir-yagout" target="_blank" rel="noopener noreferrer" class="social-link">
                             <img src="./images/icons8-linkedin-50.png" alt="linkedin" class="social-icon">
                         </a>
                         <a href="https://github.com/yassiryagoat" target="_blank" rel="noopener noreferrer" class="social-link">
                             <img src="./images/icons8-github-50.png" alt="Medium" class="social-icon">
                         </a>
-                        <a href="mailto:contact@yagoutyassir-cyber.com" class="social-link">
-                            <img src="./images/icons8-gmail-50.png" alt="Medium" class="social-icon">
+                        <a href="mailto:yagoutyassir@gmail.com" class="social-link" aria-label="Email Yassir Yagout" title="Send me an email">
+                            <img src="./images/icons8-gmail-50.png" alt="Email" class="social-icon">
                         </a>
-                        <a href="https://medium.com/vishnu-" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Medium" title="Medium">
+                        <a href="https://medium.com/@vi5hnu-" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Medium" title="Medium">
                             <img src="./images/icons8-medium-50.png" alt="Medium" class="social-icon">
                         </a>
                     </div>
@@ -1733,4 +1821,45 @@
     </footer>
 
     <a href="#home" class="scroll-top" id="scrollTop">⬆️</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            function updateActiveSection() {
+                let currentSection = '';
+                const triggerBottom = window.innerHeight * 0.8;
+
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    
+                    if (sectionTop < triggerBottom && sectionTop > -section.offsetHeight + 100) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            // Update active section on scroll
+            window.addEventListener('scroll', updateActiveSection);
+            
+            // Update active section on page load
+            updateActiveSection();
+            
+            // Update active section when clicking on nav links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
     

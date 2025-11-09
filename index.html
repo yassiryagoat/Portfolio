@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yassir - Cybersecurity Portfolio</title>
+    <title>Yassir YAGOUT - Cybersecurity Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         * {
@@ -296,6 +296,15 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.7);
         }
 
+        .skills-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
         .hero-badge {
             display: inline-block;
             padding: 0.5rem 1rem;
@@ -304,9 +313,15 @@
             border-radius: 20px;
             color: var(--white);
             font-size: 0.9rem;
-            margin-bottom: 2rem;
             animation: fadeInUp 1s ease-out;
             backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .hero-badge:hover {
+            transform: translateY(-2px);
+            background: rgba(25, 88, 155, 0.4);
+            box-shadow: 0 4px 12px rgba(25, 88, 155, 0.3);
         }
 
         .hero h1 {
@@ -1385,7 +1400,7 @@
     
     <nav id="navbar">
         <div class="nav-container">
-            <a href="#home" class="logo">Yassir</a>
+            <a href="#home" class="logo">Yassir YAGOUT</a>
             <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
             <ul id="navMenu">
                 <li><a href="#home" class="nav-link active">Home</a></li>
@@ -1401,12 +1416,15 @@
     <section class="hero" id="home">
         <div class="hero-content">
                 <div class="hero-text">
-                    <div class="hero-badge">Cybersecurity Junior</div>
-                    <h1>YASSIR</h1>
-                    <p class="tagline">
-                        SOC Analyst | Threat Intelligence | Incident Response<br>
-                        AI/LLM Security Researcher | Penetration Tester
-                    </p>
+                    <h1>YAGOUT YASSIR</h1>
+                    <p class="tagline">Cybersecurity Junior</p>
+                    <div class="skills-badges">
+                        <span class="hero-badge">SOC Analyst</span>
+                        <span class="hero-badge">Threat Intelligence</span>
+                        <span class="hero-badge">Incident Response</span>
+                        <span class="hero-badge">AI/LLM Security Researcher</span>
+                        <span class="hero-badge">Penetration Tester</span>
+                    </div>
                     <div class="cta-group">
                         <a href="#contact" class="cta">
                             Let's Connect
@@ -1692,16 +1710,16 @@
                 
                 <div class="contact-details">
                     <div class="social-links">
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <a href="https://linkedin.com/yassir-yagout" target="_blank" rel="noopener noreferrer" class="social-link">
                             <img src="./images/icons8-linkedin-50.png" alt="linkedin" class="social-icon">
                         </a>
-                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <a href="https://github.com/yassiryagoat" target="_blank" rel="noopener noreferrer" class="social-link">
                             <img src="./images/icons8-github-50.png" alt="Medium" class="social-icon">
                         </a>
-                        <a href="mailto:contact@yassir-cyber.com" class="social-link">
+                        <a href="mailto:contact@yagoutyassir-cyber.com" class="social-link">
                             <img src="./images/icons8-gmail-50.png" alt="Medium" class="social-icon">
                         </a>
-                        <a href="https://medium.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Medium" title="Medium">
+                        <a href="https://medium.com/vishnu-" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Medium" title="Medium">
                             <img src="./images/icons8-medium-50.png" alt="Medium" class="social-icon">
                         </a>
                     </div>
@@ -1710,7 +1728,7 @@
     </section>
 
     <footer>
-        <p>© 2025 Yassir | Cybersecurity Professional</p>
+        <p>© 2025 Yassir YAGOUT| Cybersecurity Professional</p>
         <p>Built with  and secured with best practices</p>
     </footer>
 
